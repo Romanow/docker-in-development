@@ -1,0 +1,16 @@
+[submodule "modules/store-service"]
+	path = modules/store-service
+	url = git@github.com:Romanow/store-service.git
+	branch = master
+[submodule "modules/order-service"]
+	path = modules/order-service
+	url = git@github.com:Romanow/order-service.git
+	branch = master
+[submodule "modules/warehouse-service"]
+	path = modules/warehouse-service
+	url = git@github.com:Romanow/warehouse-service.git
+	branch = master
+[submodule "modules/warranty-service"]
+	path = modules/warranty-service
+	url = git@github.com:Romanow/warranty-service.git
+	branch = master
