@@ -7,14 +7,15 @@
     1. Postgres, Services, Volumes.
     2. Чтобы настройки Docker не влияли на другие контуры, создаем
     3. Задание актуальных версий или использование Build Context?
-    4. Git Submodules и сборка приложений.
-    5. Ожидание сервисов.
+    4. Git Submodules и сборка приложений [docker-compose.yml](docker-compose.yml).
+    5. Ожидание сервисов [docker-compose.wait.yml](docker-compose.wait.yml).
 3. Использование Docker Compose для разработки:
     1. Eureka или другие Service Discovery не используем, т.к. все запускается в OpenShift.
     2. В настройках адреса сервисов прописываем как `services.dict.url: ${DICT_URL:http://dictionary-service:8020}`, а в
-       Docker Compose в блоке `environment` переопределяем на `host.docker.internal`.
+       Docker Compose в блоке `environment` переопределяем
+       на `host.docker.internal` [docker-compose.local-debug.yml](docker-compose.local-debug.yml).
     3. В самом приложении создаем профиль `application-docker-to-local.properties`, где прописываем адреса на localhost.
-    
+    3. Дебаг приложения внутри контейнера [docker-compose.remote-debug.yml](docker-compose.remote-debug.yml).
 
 ### Git Submodules
 
