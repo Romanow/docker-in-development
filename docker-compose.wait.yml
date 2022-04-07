@@ -16,14 +16,11 @@ services:
   store-service:
     build:
       context: ./modules/store-service
-      dockerfile: Dockerfile.docker-env
-    image: romanowalex/store-service:v1.0-docker
+      dockerfile: Dockerfile.docker-dev
+    image: romanowalex/store-service:v1.0-docker-wait
     container_name: store-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      ORDER_URL: http://order-service:8380
-      WAREHOUSE_URL: http://warehouse-service:8280
-      WARRANTY_URL: http://warranty-service:8180
       WAIT_HOSTS: order-service:8380, warehouse-service:8280, warranty-service:8180
       WAIT_TIMEOUT: 60
     ports:
@@ -33,12 +30,10 @@ services:
 
   order-service:
     build: ./modules/order-service
-    image: romanowalex/order-service:v1.0-docker
+    image: romanowalex/order-service:v1.0-docker-wait
     container_name: order-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      WAREHOUSE_URL: http://warehouse-service:8280
-      WARRANTY_URL: http://warranty-service:8180
     ports:
       - "8380:8380"
     depends_on:
@@ -46,11 +41,10 @@ services:
 
   warehouse-service:
     build: ./modules/warehouse-service
-    image: romanowalex/warehouse-service:v1.0-docker
+    image: romanowalex/warehouse-service:v1.0-docker-wait
     container_name: warehouse-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      WARRANTY_URL: http://warranty-service:8180
     ports:
       - "8280:8280"
     depends_on:
@@ -58,7 +52,7 @@ services:
 
   warranty-service:
     build: ./modules/warranty-service
-    image: romanowalex/warranty-service:v1.0-docker
+    image: romanowalex/warranty-service:v1.0-docker-wait
     container_name: warranty-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
