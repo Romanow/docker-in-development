@@ -22,6 +22,7 @@ start=$(date +%s)
 trap 'timed $start' EXIT
 
 declare -A process
+services="$*"
 
 {
   trap 'kill 0' SIGINT
@@ -33,10 +34,15 @@ declare -A process
       continue
     fi
 
+    if [[ ! "${#services[@]}" -eq 0 && ! "${services[*]}" =~ ${name} ]]; then
+      printf "=== Skipping building module %s ===\n" "$name"
+      continue
+    fi
+
     "$dir"/gradlew clean build -p "$dir" >logs/"$name".log 2>&1 &
 
     pid=$!
-    printf "=== Building module '%s' with PID %d ===\n" "$name", "$pid"
+    printf "=== Building module '%s' with PID %d ===\n" "$name" "$pid"
     process[$name]=$pid
   done
 }

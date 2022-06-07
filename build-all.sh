@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 shopt -s extglob
 
 timed() {
@@ -18,12 +19,20 @@ timed() {
 start=$(date +%s)
 trap 'timed $start' EXIT
 
+services="$*"
+
 for dir in ./modules/*; do
-    gradlew_exist="$dir"/gradlew
-    if [[ ! -f $gradlew_exist ]]; then
-      continue
-    fi
-      
+  name="$(basename "$dir")"
+  gradlew_exist="$dir"/gradlew
+  if [[ ! -f $gradlew_exist ]]; then
+    continue
+  fi
+
+  if [[ ! "${#services[@]}" -eq 0 && ! "${services[*]}" =~ ${name} ]]; then
+    printf "=== Skipping building module %s ===\n" "$name"
+    continue
+  fi
+
   printf "\n=== Building module '%s' ===\n" "$(basename "$dir")"
   "$dir"/gradlew clean build -p "$dir"
 done
