@@ -28,7 +28,7 @@ for dir in ./modules/*; do
     continue
   fi
 
-  if [[ ! "${#services[@]}" -eq 0 && ! "${services[*]}" =~ ${name} ]]; then
+  if [[ "${services}" && ! "${services[*]}" =~ ${name} ]]; then
     printf "=== Skipping building module %s ===\n" "$name"
     continue
   fi

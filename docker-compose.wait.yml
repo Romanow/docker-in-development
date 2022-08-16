@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker
       WAIT_HOSTS: order-service:8380, warehouse-service:8280, warranty-service:8180
-      WAIT_TIMEOUT: 60
+      WAIT_TIMEOUT: 120
     ports:
       - "8480:8480"
     depends_on:
