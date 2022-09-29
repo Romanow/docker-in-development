@@ -21,6 +21,11 @@
 
 ```shell
 $ git submodule add -b master git@github.com:Romanow/store-service.git modules/store-service
+$ git submodule add \
+    --force \
+    -b master \
+    --name modules/warranty-service git@github.com:Romanow/warranty-service.git \
+    modules/warranty-service
 ```
 
 ### Сборка

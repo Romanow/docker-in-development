@@ -46,16 +46,5 @@ services:
     depends_on:
       - postgres
 
-  warranty-service:
-    build: ./modules/warranty-service
-    image: romanowalex/warranty-service:v1.0-docker
-    container_name: warranty-service
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    ports:
-      - "8180:8180"
-    depends_on:
-      - postgres
-
 volumes:
   db-data:

@@ -19,20 +19,8 @@ timed() {
 start=$(date +%s)
 trap 'timed $start' EXIT
 
-services="$*"
-
 for dir in ./modules/*; do
   name="$(basename "$dir")"
-  gradlew_exist="$dir"/gradlew
-  if [[ ! -f $gradlew_exist ]]; then
-    continue
-  fi
 
-  if [[ "${services}" && ! "${services[*]}" =~ ${name} ]]; then
-    printf "=== Skipping building module %s ===\n" "$name"
-    continue
-  fi
-
-  printf "\n=== Building module '%s' ===\n" "$(basename "$dir")"
-  "$dir"/gradlew clean build -p "$dir"
+  printf "\n=== Building module '%s' ===\n" "$name"
 done

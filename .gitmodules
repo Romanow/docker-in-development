@@ -10,7 +10,3 @@
 	path = modules/warehouse-service
 	url = git@github.com:Romanow/warehouse-service.git
 	branch = master
-[submodule "modules/warranty-service"]
-	path = modules/warranty-service
-	url = git@github.com:Romanow/warranty-service.git
-	branch = master

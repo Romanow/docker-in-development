@@ -1,5 +1,4 @@
 *.iml
 .DS_Store
 .idea/
-modules/
 logs/*.log
